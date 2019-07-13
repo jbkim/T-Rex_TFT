@@ -6,3 +6,22 @@ The DinoGame folder needs to be in Arduino's libraries folder.
 Aditional information about the project is [here](https://www.hackster.io/brzi/google-chrome-dinosaur-game-on-3-4-tft-c8ad88).
 
 (some legal stuff) I do not own the rights to this game I just did this out of fun (/some legal stuff)
+
+## Porting to M5Stack
+
+- Change LCD pin definition in WROVER_KIT_LCD.cpp
+~~~cpp
+#define WROVER_CS               14
+#define WROVER_DC               27
+#define WROVER_RST              33
+#define WROVER_SCLK             18
+#define WROVER_MOSI             23
+#define WROVER_MISO             19
+#define WROVER_BL               32
+~~~
+- Change LCD width & height in WROVER_KIT_LCD.h
+~~~cpp
+#define WROVER_WIDTH       320
+#define WROVER_HEIGHT      240
+~~~
+- Change button pin in T0Rex_TFT.ino
