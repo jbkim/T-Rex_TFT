@@ -8,6 +8,7 @@ Aditional information about the project is [here](https://www.hackster.io/brzi/g
 (some legal stuff) I do not own the rights to this game I just did this out of fun (/some legal stuff)
 
 ## Porting to M5Stack
+ <img src="./Dinosaur_M5stack.jpg" width="320" height="320">
 
 - Change LCD pin definition in WROVER_KIT_LCD.cpp
 ~~~cpp
