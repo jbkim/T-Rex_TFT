@@ -25,4 +25,53 @@ Aditional information about the project is [here](https://www.hackster.io/brzi/g
 #define WROVER_WIDTH       320
 #define WROVER_HEIGHT      240
 ~~~
-- Change button pin in T0Rex_TFT.ino
+- Change button pin in T0Rex_TFT.ino 
+~~~cpp
+  pinMode(37, INPUT_PULLUP);  // Jumm - Button C
+  pinMode(39, INPUT_PULLUP);  // duck - Button A 
+~~~  
+- Commnent the Back light pin control at the end of WROVER_KIT_LCD::begin() function
+~~~cpp
+void WROVER_KIT_LCD::begin(){
+    _width  = WROVER_WIDTH;
+    _height = WROVER_HEIGHT;
+
+    pinMode(WROVER_DC, OUTPUT);
+    digitalWrite(WROVER_DC, LOW);
+    pinMode(WROVER_CS, OUTPUT);
+    digitalWrite(WROVER_CS, HIGH);
+    pinMode(WROVER_BL, OUTPUT);
+    digitalWrite(WROVER_BL, WROVER_BL_OFF);
+
+    SPI.begin(WROVER_SCLK, WROVER_MISO, WROVER_MOSI, -1);
+
+    pinMode(WROVER_RST, OUTPUT);
+    digitalWrite(WROVER_RST, HIGH);
+    delay(100);
+    digitalWrite(WROVER_RST, LOW);
+    delay(100);
+    digitalWrite(WROVER_RST, HIGH);
+    delay(200);
+
+    _id = readId();
+    log_d("Display ID: 0x%06X", _id);
+
+    startWrite();
+
+    if(_id){
+        writeInitData(st7789v_init_data);
+    } else {
+        writeInitData(ili9341_init_data);
+    }
+
+    writeCommand(WROVER_SLPOUT);
+    delay(120);
+    writeCommand(WROVER_DISPON);
+    delay(120);
+
+    endWrite();
+    // Need to disable below for M5Stack
+    // digitalWrite(WROVER_BL, WROVER_BL_ON);
+}
+
+~~~
