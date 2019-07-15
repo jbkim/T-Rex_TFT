@@ -27,7 +27,7 @@ Aditional information about the project is [here](https://www.hackster.io/brzi/g
 ~~~
 - Change button pin in T0Rex_TFT.ino 
 ~~~cpp
-  pinMode(37, INPUT_PULLUP);  // Jumm - Button C
+  pinMode(37, INPUT_PULLUP);  // Jump - Button C
   pinMode(39, INPUT_PULLUP);  // duck - Button A 
 ~~~  
 - Commnent the Back light pin control at the end of WROVER_KIT_LCD::begin() function
